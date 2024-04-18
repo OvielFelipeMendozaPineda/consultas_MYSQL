@@ -1421,5 +1421,6 @@ WHERE E.apellido2 IS NULL;
         x|
         ```
     
-        #   c o n s u l t a s S Q L _ 2  
+        #   c o n s u l t a s S Q L _ 2 
+ 
  
