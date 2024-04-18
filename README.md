@@ -1,10 +1,10 @@
-# EJERCICIOS CONSULTAS EN MYSQL
+# EJERCICIOS CONSULTAS EN MYjsx
 
 #### 	1. Consultas sobre una tabla.
 
 1. Lista el primer apellido de todos los empleados.
 
-   ```sql
+   ```jsx
    SELECT apellido1 FROM empleado;
    +-----------+
    | apellido1 |
@@ -30,7 +30,7 @@
 2. Lista el primer apellido de los empleados eliminando los apellidos que estén
     repetidos.
 
-  ```sql
+  ```jsx
   SELECT DISTINCT apellido1 FROM empleado;
   +-----------+
   | apellido1 |
@@ -51,7 +51,7 @@
 
 3. Lista todas las columnas de la tabla empleado.
 
-     ```sql
+     ```jsx
      SELECT id, nif, nombre, apellido1, apellido2, id_departamento  FROM empleado;
      +----+-----------+--------------+-----------+-----------+-----------------+
      | id | nif       | nombre       | apellido1 | apellido2 | id_departamento |
@@ -77,7 +77,7 @@
 
 4. Lista el nombre y los apellidos de todos los empleados.
 
-     ```sql
+     ```jsx
      SELECT nombre, apellido1, apellido2 FROM empleado;
      +--------------+-----------+-----------+
      | nombre       | apellido1 | apellido2 |
@@ -103,7 +103,7 @@
 5. Lista el identificador de los departamentos de los empleados que aparecen
      en la tabla empleado.
 
-     ```sql
+     ```jsx
      SELECT id_departamento FROM empleado WHERE id_departamento IS NOT NULL;
      +-----------------+
      | id_departamento |
@@ -124,7 +124,7 @@
 6. Lista el identificador de los departamentos de los empleados que aparecen
      en la tabla empleado, eliminando los identificadores que aparecen repetidos.
 
-     ```sql
+     ```jsx
      SELECT DISTINCT id_departamento FROM empleado WHERE id_departamento IS NOT NULL;
      +-----------------+
      | id_departamento |
@@ -140,7 +140,7 @@
 
 7. Lista el nombre y apellidos de los empleados en una única columna. 
 
-     ```sql
+     ```jsx
      SELECT CONCAT(nombre, ' ', apellido1, ' ', apellido2) as nombreCompleto FROM empleado;
      +----------------------------+
      | nombreCompleto             |
@@ -164,7 +164,7 @@
 
 8. Lista el nombre y apellidos de los empleados en una única columna, convirtiendo todos los caracteres en mayúscula.
 
-     ```sql
+     ```jsx
      SELECT UPPER(CONCAT( nombre, ' ', apellido1, ' ', apellido2)) as nombreCompleto FROM empleado;
      +----------------------------+
      | nombreCompleto             |
@@ -189,7 +189,7 @@
 
 9. Lista el nombre y apellidos de los empleados en una única columna, convirtiendo todos los caracteres en minúscula.
 
-     ```sql
+     ```jsx
      SELECT LOWER(CONCAT( nombre, ' ', apellido1, ' ', apellido2)) as nombreCompleto FROM empleado;
      +----------------------------+
      | nombreCompleto             |
@@ -214,7 +214,7 @@
 
 10. Lista el identificador de los empleados junto al nif, pero el nif deberá aparecer en dos columnas, una mostrará únicamente los dígitos del nif y la otra la letra. 
 
-     ```sql
+     ```jsx
        SELECT id,
        REGEXP_REPLACE(nif, '[^0-9]', '') AS nif_numeros,
        REGEXP_REPLACE(nif, '[^A-Za-z]', '') AS nif_letras
@@ -247,7 +247,7 @@
           valores negativos. Utilice un alias apropiado para la nueva columna columna
           que está calculando.
 
-        ```sql
+        ```jsx
         SELECT presupuesto - gastos as presupuesto_actual
         FROM departamento;
         +--------------------+
@@ -270,7 +270,7 @@
 12. Lista el nombre de los departamentos y el valor del presupuesto actual
           ordenado de forma ascendente.
 
-        ```sql
+        ```jsx
         SELECT nombre, presupuesto - gastos as presupuesto_actual
         FROM departamento
         ORDER BY presupuesto_actual ASC;
@@ -293,7 +293,7 @@
 13. Lista el nombre de todos los departamentos ordenados de forma
           ascendente.
 
-      ```sql
+      ```jsx
       SELECT nombre FROM departamento ORDER BY nombre ASC;
       +------------------+
       | nombre           |
@@ -311,7 +311,7 @@
 14. Lista el nombre de todos los departamentos ordenados de forma
           descendente.
 
-      ```sql
+      ```jsx
       SELECT nombre FROM departamento ORDER BY nombre DESC;
       +------------------+
       | nombre           |
@@ -332,7 +332,7 @@
           alfabética tendiendo en cuenta en primer lugar sus apellidos y luego su
           nombre.
 
-      ```sql
+      ```jsx
       SELECT apellido1, apellido2, nombre 
       FROM empleado
       ORDER BY apellido1, apellido2 ASC;
@@ -358,7 +358,7 @@
 16. Devuelve una lista con el nombre y el presupuesto, de los 3 departamentos
           que tienen mayor presupuesto.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento ORDER BY presupuesto DESC LIMIT 3;
       +------------------+-------------+
       | nombre           | presupuesto |
@@ -374,7 +374,7 @@
 17. Devuelve una lista con el nombre y el presupuesto, de los 3 departamentos
           que tienen menor presupuesto.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento ORDER BY presupuesto ASC LIMIT 3;
       +--------------+-------------+
       | nombre       | presupuesto |
@@ -390,7 +390,7 @@
 18. Devuelve una lista con el nombre y el gasto, de los 2 departamentos que
           tienen mayor gasto.
 
-      ```sql
+      ```jsx
       SELECT nombre, gastos FROM departamento ORDER BY gastos DESC LIMIT 2;
       +------------------+--------+
       | nombre           | gastos |
@@ -405,7 +405,7 @@
 19. Devuelve una lista con el nombre y el gasto, de los 2 departamentos que
           tienen menor gasto.
 
-      ```sql
+      ```jsx
       SELECT nombre, gastos FROM departamento ORDER BY gastos ASC LIMIT 2;
       +------------+--------+
       | nombre     | gastos |
@@ -421,7 +421,7 @@
           tercera fila se debe incluir en la respuesta. La respuesta debe incluir todas las
           columnas de la tabla empleado.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado LIMIT 5 OFFSET 2;
       +----+-----------+--------+-----------+-----------+-----------------+
       | id | nif       | nombre | apellido1 | apellido2 | id_departamento |
@@ -439,7 +439,7 @@
 21. Devuelve una lista con el nombre de los departamentos y el presupuesto, de
           aquellos que tienen un presupuesto mayor o igual a 150000 euros.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento WHERE presupuesto >= 150000;
       +------------------+-------------+
       | nombre           | presupuesto |
@@ -453,7 +453,7 @@
 22. Devuelve una lista con el nombre de los departamentos y el gasto, de
           aquellos que tienen menos de 5000 euros de gastos.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento WHERE presupuesto <= 500;
       +------------+-------------+
       | nombre     | presupuesto |
@@ -469,7 +469,7 @@
           aquellos que tienen un presupuesto entre 100000 y 200000 euros. Sin
           utilizar el operador BETWEEN.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento WHERE presupuesto >= 100000 AND presupuesto <= 200000;
       +--------------+-------------+
       | nombre       | presupuesto |
@@ -485,7 +485,7 @@
 24. Devuelve una lista con el nombre de los departamentos que no tienen un
           presupuesto entre 100000 y 200000 euros. Sin utilizar el operador BETWEEN.
 
-      ```sql
+      ```jsx
       SELECT  nombre, presupuesto FROM departamento WHERE presupuesto <= 100000 OR presupuesto >= 200000;
       +------------------+-------------+
       | nombre           | presupuesto |
@@ -502,7 +502,7 @@
 25. Devuelve una lista con el nombre de los departamentos que tienen un
           presupuesto entre 100000 y 200000 euros. Utilizando el operador BETWEEN.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento WHERE presupuesto BETWEEN 100000 AND 200000;
       +--------------+-------------+
       | nombre       | presupuesto |
@@ -518,7 +518,7 @@
 26. Devuelve una lista con el nombre de los departamentos que no tienen un
           presupuesto entre 100000 y 200000 euros. Utilizando el operador BETWEEN.
 
-      ```sql
+      ```jsx
       SELECT nombre, presupuesto FROM departamento WHERE presupuesto NOT BETWEEN 100000 AND 200000;
       +------------------+-------------+
       | nombre           | presupuesto |
@@ -536,7 +536,7 @@
           presupuesto, de aquellos departamentos donde los gastos sean mayores
           que el presupuesto del que disponen.
 
-      ```sql
+      ```jsx
       SELECT nombre, gastos, presupuesto FROM departamento WHERE gastos > presupuesto;
       +------------+--------+-------------+
       | nombre     | gastos | presupuesto |
@@ -552,7 +552,7 @@
           presupuesto, de aquellos departamentos donde los gastos sean menores
           que el presupuesto del que disponen.
 
-      ```sql
+      ```jsx
       SELECT nombre, gastos, presupuesto FROM departamento WHERE gastos < presupuesto; 
       +------------------+--------+-------------+
       | nombre           | gastos | presupuesto |
@@ -570,7 +570,7 @@
           presupuesto, de aquellos departamentos donde los gastos sean iguales al
           presupuesto del que disponen.
 
-      ```sql
+      ```jsx
       SELECT nombre, gastos, presupuesto FROM departamento WHERE gastos = presupuesto;
        +-----------+--------+-------------+
       | nombre    | gastos | presupuesto |
@@ -583,7 +583,7 @@
 
 30. Lista todos los datos de los empleados cuyo segundo apellido sea NULL.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado WHERE apellido2 IS NULL;
       +----+-----------+--------+-----------+-----------+-----------------+
       | id | nif       | nombre | apellido1 | apellido2 | id_departamento |
@@ -597,7 +597,7 @@
 
 31. Lista todos los datos de los empleados cuyo segundo apellido no sea NULL.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado WHERE apellido2 IS NOT NULL;
       +----+-----------+--------------+-----------+-----------+-----------------+
       | id | nif       | nombre       | apellido1 | apellido2 | id_departamento |
@@ -620,7 +620,7 @@
 
 32. Lista todos los datos de los empleados cuyo segundo apellido sea López.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado WHERE apellido2 = 'López';
       +----+-----------+--------+-----------+-----------+-----------------+
       | id | nif       | nombre | apellido1 | apellido2 | id_departamento |
@@ -634,7 +634,7 @@
 33. Lista todos los datos de los empleados cuyo segundo apellido
           sea Díaz o Moreno. Sin utilizar el operador IN.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado WHERE apellido2 = 'Díaz' or apellido2 =  'Moreno';
       +----+-----------+--------+-----------+-----------+-----------------+
       | id | nif       | nombre | apellido1 | apellido2 | id_departamento |
@@ -649,7 +649,7 @@
 34. Lista todos los datos de los empleados cuyo segundo apellido
           sea Díaz o Moreno. Utilizando el operador IN.
 
-      ```sql
+      ```jsx
       SELECT id, nif, nombre, apellido1, apellido2, id_departamento FROM empleado WHERE apellido2 IN ('Díaz', 'Moreno');
       +----+-----------+--------+-----------+-----------+-----------------+
       | id | nif       | nombre | apellido1 | apellido2 | id_departamento |
@@ -664,7 +664,7 @@
 35. Lista los nombres, apellidos y nif de los empleados que trabajan en el
           departamento 3.
 
-      ```sql
+      ```jsx
       SELECT nif, nombre, apellido1, apellido2 FROM empleado WHERE id_departamento = 3;
       +-----------+--------+-----------+-----------+
       | nif       | nombre | apellido1 | apellido2 |
@@ -679,7 +679,7 @@
 36. Lista los nombres, apellidos y nif de los empleados que trabajan en los
       departamentos 2, 4 o 5.
 
-      ```sql
+      ```jsx
       SELECT nif, nombre, apellido1, apellido2 FROM empleado WHERE id_departamento IN (2,4,5);
       +-----------+--------+-----------+-----------+
       | nif       | nombre | apellido1 | apellido2 |
@@ -695,12 +695,12 @@
 
 ## Consultas multitabla (Composición interna)
 
-​	Resuelva todas las consultas utilizando la sintaxis de SQL1 y SQL2.
+​	Resuelva todas las consultas utilizando la sintaxis de jsx1 y jsx2.
 
 1. Devuelve un listado con los empleados y los datos de los departamentos
     donde trabaja cada uno.
 
-  ```sql
+  ```jsx
   SELECT E.nombre as nombre_empleado, E.id_departamento, D.nombre, D.presupuesto, D.gastos
   FROM empleado as E
   INNER JOIN departamento as D ON E.id_departamento=D.id;
@@ -728,7 +728,7 @@
     del departamento (en orden alfabético) y en segundo lugar por los apellidos
     y el nombre de los empleados.
 
-  ```sql
+  ```jsx
   SELECT D.nombre as nombre_departamento, CONCAT( E.apellido1, ' ', E.apellido2) as apellidos_empleado, E.nombre
   FROM empleado as E 
   INNER JOIN departamento as D ON E.id_departamento = D.id ORDER BY D.nombre ASC;
@@ -754,7 +754,7 @@
 3. Devuelve un listado con el identificador y el nombre del departamento,
      solamente de aquellos departamentos que tienen empleados.
 
-     ```sql
+     ```jsx
      SELECT D.id, D.nombre
      FROM empleado as E
      INNER JOIN departamento as D ON E.id_departamento = D.id;
@@ -784,7 +784,7 @@
        (columna presupuesto) el valor de los gastos que ha generado
        (columna gastos).
 
-     ```sql
+     ```jsx
      SELECT D.id, D.nombre, ( D.presupuesto - D.gastos) as presupuesto_actual
      FROM empleado as E
      INNER JOIN departamento as D ON E.id_departamento = D.id;
@@ -810,7 +810,7 @@
 5. Devuelve el nombre del departamento donde trabaja el empleado que tiene
      el nif 38382980M.
 
-     ```sql
+     ```jsx
      SELECT D.nombre, E.nombre
      FROM empleado as E
      INNER JOIN departamento as D ON E.id_departamento = D.id WHERE E.nif = '38382980M';
@@ -826,7 +826,7 @@
 6. Devuelve el nombre del departamento donde trabaja el empleado Pepe Ruiz
      Santana.
 
-     ```sql
+     ```jsx
      SELECT D.nombre, E.nombre
      FROM empleado as E
      INNER JOIN departamento as D ON E.id_departamento = D.id WHERE E.nombre = 'Pepe' AND E.apellido1 = 'Ruiz' AND E.apellido2 = 'Santana';
@@ -842,7 +842,7 @@
 7. Devuelve un listado con los datos de los empleados que trabajan en el
     departamento de I+D. Ordena el resultado alfabéticamente.
 
-  ```sql
+  ```jsx
   SELECT  E.nombre
   FROM empleado as E
   INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -861,7 +861,7 @@
      departamento de Sistemas, Contabilidad o I+D. Ordena el resultado
        alfabéticamente.
 
-     ```sql
+     ```jsx
      SELECT  E.id, E.nombre, E.apellido1, E.apellido2, E.nif
      FROM empleado as E
      INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -883,7 +883,7 @@
 9. Devuelve una lista con el nombre de los empleados que tienen los
      departamentos que no tienen un presupuesto entre 100000 y 200000 euros.
 
-```sql
+```jsx
 SELECT  E.nombre
 FROM empleado as E
 INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -902,7 +902,7 @@ WHERE D.presupuesto NOT BETWEEN 100000  AND 200000;
     algún empleado cuyo segundo apellido sea NULL. Tenga en cuenta que no
     debe mostrar nombres de departamentos que estén repetidos.
 
-```sql
+```jsx
 SELECT DISTINCT D.nombre
 FROM empleado as E
 INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -924,7 +924,7 @@ WHERE E.apellido2 IS NULL;
     departamentos donde trabajan. Este listado también debe incluir los
     empleados que no tienen ningún departamento asociado.
 
-  ```sql
+  ```jsx
   SELECT E.nombre, E.apellido1, E.apellido2, D.nombre, D.presupuesto, D.gastos
   FROM empleado as E
   LEFT JOIN departamento as D ON E.id_departamento = D.id;
@@ -952,7 +952,7 @@ WHERE E.apellido2 IS NULL;
 2. Devuelve un listado donde sólo aparezcan aquellos empleados que no
     tienen ningún departamento asociado.
 
-  ```sql
+  ```jsx
   SELECT E.nombre, E.apellido1, E.apellido2, D.nombre AS nombre_departamento, D.presupuesto, D.gastos
   FROM empleado as E
   LEFT JOIN departamento as D ON E.id_departamento = D.id WHERE D.id IS NULL;
@@ -969,7 +969,7 @@ WHERE E.apellido2 IS NULL;
 3. Devuelve un listado donde sólo aparezcan aquellos departamentos que no
     tienen ningún empleado asociado.
 
-  ```sql
+  ```jsx
   SELECT D.nombre as nombre_departamento, E.id
   FROM departamento as D
   LEFT JOIN empleado as E ON D.id = E.id_departamento WHERE E.id_departamento IS NULL;
@@ -989,7 +989,7 @@ WHERE E.apellido2 IS NULL;
     ningún empleado asociado. Ordene el listado alfabéticamente por el
     nombre del departamento. 
 
-  ```sql
+  ```jsx
   SELECT E.id, E.nif, E.nombre, E.apellido1, E.apellido2, E.id_departamento, D.nombre as nombre_departamento
   FROM empleado as E
   LEFT JOIN departamento as D ON E.id_departamento = D.id
@@ -1026,7 +1026,7 @@ WHERE E.apellido2 IS NULL;
     asociado y los departamentos que no tienen ningún empleado asociado.
     Ordene el listado alfabéticamente por el nombre del departamento. PENDIENTE
 
-  ```sql
+  ```jsx
   SELECT  E.id, E.nif, E.nombre, E.apellido1, E.apellido2, E.id_departamento, D.nombre as nombre_departamento
   FROM empleado as E
   LEFT JOIN departamento as D ON E.id_departamento = D.id
@@ -1053,14 +1053,14 @@ WHERE E.apellido2 IS NULL;
 
 1. Calcula la suma del presupuesto de todos los departamentos.
 
-   ```sql
+   ```jsx
    SELECT  SUM(presupuesto) AS presupuesto_total
    FROM departamento;      
    ```
 
 2. Calcula la media del presupuesto de todos los departamentos.
 
-   ```sql
+   ```jsx
    SELECT AVG(presupuesto) as presupuesto_media
    FROM departamento;
    +--------------------+
@@ -1072,7 +1072,7 @@ WHERE E.apellido2 IS NULL;
 
 3. Calcula el valor mínimo del presupuesto de todos los departamentos.
 
-   ```sql
+   ```jsx
    SELECT MIN(presupuesto) as presupuesto_minimo
    FROM departamento;
    +-------------------+
@@ -1086,7 +1086,7 @@ WHERE E.apellido2 IS NULL;
 
   del departamento con menor presupuesto.
 
-  ```sql
+  ```jsx
   SELECT nombre, presupuesto 
   FROM departamento
   WHERE presupuesto = (SELECT MIN(presupuesto) FROM departamento);
@@ -1101,7 +1101,7 @@ WHERE E.apellido2 IS NULL;
 
 5. Calcula el valor máximo del presupuesto de todos los departamentos.
 
-   ```sql
+   ```jsx
    SELECT MAX(presupuesto) as presupuesto_maximo
    FROM departamento;
    +--------------------+
@@ -1115,7 +1115,7 @@ WHERE E.apellido2 IS NULL;
 
   del departamento con mayor presupuesto.
 
-  ```sql
+  ```jsx
   SELECT nombre, presupuesto
   FROM departamento
   WHERE presupuesto = (SELECT MAX(presupuesto) FROM departamento);
@@ -1129,7 +1129,7 @@ WHERE E.apellido2 IS NULL;
 
 7. Calcula el número total de empleados que hay en la tabla empleado.
 
-   ```sql
+   ```jsx
    SELECT  COUNT(id) as cantidad_empleados FROM empleado;
    +--------------------+
    | cantidad_empleados |
@@ -1141,7 +1141,7 @@ WHERE E.apellido2 IS NULL;
 8. Calcula el número de empleados que no tienen NULL en su segundo
     apellido.
 
-  ```sql
+  ```jsx
   SELECT  COUNT(apellido2) as cantidad_apellidos_no_null FROM empleado WHERE apellido1 IS NOT NULL AND apellido2 IS NOT NULL;
   +----------------------------+
   | cantidad_apellidos_no_null |
@@ -1155,7 +1155,7 @@ WHERE E.apellido2 IS NULL;
     devolver dos columnas, una con el nombre del departamento y otra con el
     número de empleados que tiene asignados.
 
-  ```sql
+  ```jsx
   SELECT COUNT(E.id_departamento) AS cantidad, D.nombre as nombre_departamento
   FROM empleado as E
   INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -1177,7 +1177,7 @@ WHERE E.apellido2 IS NULL;
     resultado debe tener dos columnas, una con el nombre del departamento y
     otra con el número de empleados que tiene asignados.
 
-    ```sql
+    ```jsx
     SELECT D.nombre as nombre_departamento, COUNT(E.id_departamento) as cantidad 
     FROM empleado as E
     INNER JOIN departamento as D ON E.id_departamento = D.id
@@ -1195,7 +1195,7 @@ WHERE E.apellido2 IS NULL;
     departamentos. El resultado de esta consulta también tiene que incluir
     aquellos departamentos que no tienen ningún empleado asociado.
 
-    ```sql
+    ```jsx
     SELECT D.nombre AS nombre_departamento, COUNT(E.id) AS cantidad_empleados
     FROM departamento AS D
     LEFT JOIN empleado AS E ON D.id = E.id_departamento
@@ -1205,7 +1205,7 @@ WHERE E.apellido2 IS NULL;
 12. Calcula el número de empleados que trabajan en cada unos de los
     departamentos que tienen un presupuesto mayor a 200000 euros.
 
-    ```sql
+    ```jsx
     SELECT D.nombre AS nombre_departamento, COUNT(E.id) AS cantidad_empleados
     FROM departamento AS D
     LEFT JOIN empleado AS E ON D.id = E.id_departamento
@@ -1226,7 +1226,7 @@ WHERE E.apellido2 IS NULL;
     1. Devuelve un listado con todos los empleados que tiene el departamento
         de Sistemas. (Sin utilizar INNER JOIN).
     
-      ```sql
+      ```jsx
       SELECT E.id, E.nombre, E.apellido1, E.apellido2 
       FROM empleado as E, departamento as D
       WHERE E.id_departamento = D.id AND D.nombre = 'Sistemas'
@@ -1241,9 +1241,9 @@ WHERE E.apellido2 IS NULL;
     
     
     2. Devuelve el nombre del departamento con mayor presupuesto y la cantidad
-      que tiene asignada.
+        que tiene asignada.
     
-      ```sql
+      ```jsx
       SELECT D.nombre, presupuesto
       FROM departamento as D
       WHERE presupuesto = (SELECT MAX(presupuesto) FROM departamento);
@@ -1257,10 +1257,10 @@ WHERE E.apellido2 IS NULL;
       
     
     3. Devuelve el nombre del departamento con menor presupuesto y la cantidad
-      que tiene asignada.
-      Subconsultas con ALL y ANY
+        que tiene asignada.
+        Subconsultas con ALL y ANY
     
-      ```sql
+      ```jsx
       SELECT D.nombre, presupuesto 
       FROM departamento as D
       WHERE presupuesto = (SELECT MIN(presupuesto) FROM departamento)
@@ -1276,9 +1276,9 @@ WHERE E.apellido2 IS NULL;
       
     
     4. Devuelve el nombre del departamento con mayor presupuesto y la cantidad
-      que tiene asignada. Sin hacer uso de MAX, ORDER BY ni LIMIT.
+        que tiene asignada. Sin hacer uso de MAX, ORDER BY ni LIMIT.
     
-      ```sql
+      ```jsx
       SELECT D.nombre, D.presupuesto
       FROM departamento as D
       ORDER BY D.presupuesto DESC
@@ -1293,9 +1293,9 @@ WHERE E.apellido2 IS NULL;
       
     
     5. Devuelve el nombre del departamento con menor presupuesto y la cantidad
-      que tiene asignada. Sin hacer uso de MIN, ORDER BY ni LIMIT.
+        que tiene asignada. Sin hacer uso de MIN, ORDER BY ni LIMIT.
     
-      ```sql
+      ```jsx
       SELECT D.nombre, D.presupuesto
       FROM departamento as D 
       ORDER BY D.presupuesto 
@@ -1310,9 +1310,9 @@ WHERE E.apellido2 IS NULL;
       
     
     6. Devuelve los nombres de los departamentos que tienen empleados
-      asociados. (Utilizando ALL o ANY).
+        asociados. (Utilizando ALL o ANY).
     
-      ```sql
+      ```jsx
       SELECT nombre
       FROM departamento
       WHERE id = ANY (SELECT id_departamento FROM empleado);
@@ -1330,10 +1330,10 @@ WHERE E.apellido2 IS NULL;
       
     
     7. Devuelve los nombres de los departamentos que no tienen empleados
-      asociados. (Utilizando ALL o ANY).
-      Subconsultas con IN y NOT IN
+        asociados. (Utilizando ALL o ANY).
+        Subconsultas con IN y NOT IN
     
-      ```sql
+      ```jsx
       SELECT D.nombre
       FROM departamento as D
       WHERE D.id NOT IN (SELECT id_departamento FROM empleado);
@@ -1342,9 +1342,9 @@ WHERE E.apellido2 IS NULL;
       
     
     8. Devuelve los nombres de los departamentos que tienen empleados
-      asociados. (Utilizando IN o NOT IN).
+        asociados. (Utilizando IN o NOT IN).
     
-      ```sql
+      ```jsx
       SELECT D.nombre
       FROM departamento as D
       WHERE D.id IN (SELECT id_departamento FROM empleado);
@@ -1362,8 +1362,8 @@ WHERE E.apellido2 IS NULL;
       
     
     9. Devuelve los nombres de los departamentos que no tienen empleados
-      asociados. (Utilizando IN o NOT IN).
-      Subconsultas con EXISTS y NOT EXISTS
+        asociados. (Utilizando IN o NOT IN).
+        Subconsultas con EXISTS y NOT EXISTS
     
       ```
       SELECT D.nombre
@@ -1376,7 +1376,7 @@ WHERE E.apellido2 IS NULL;
     10. Devuelve los nombres de los departamentos que tienen empleados
         asociados. (Utilizando EXISTS o NOT EXISTS).
     
-        ```sql
+        ```jsx
         SELECT nombre
         FROM departamento AS D
         WHERE EXISTS (
@@ -1421,5 +1421,6 @@ WHERE E.apellido2 IS NULL;
         x|
         ```
     
-        #   c o n s u l t a s S Q L _ 2  
- 
+        #   c o n s u l t a s S Q L _ 2 
+         
+         
